@@ -29,7 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Text(
           "Aptronix",
           style: GoogleFonts.ubuntu(
-            textStyle: TextStyle(fontSize: mHeight! / 12),
+            textStyle:
+                TextStyle(fontSize: mHeight! / 16, fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -54,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
       );
     } else {
       await Future.delayed(
-        const Duration(seconds: 3),
+        const Duration(seconds: 2),
       );
       Navigator.pushReplacement(
         context,

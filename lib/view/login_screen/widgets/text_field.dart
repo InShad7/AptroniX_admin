@@ -15,12 +15,18 @@ class MyTextField extends StatelessWidget {
 
   bool passChar;
 
-  MyTextField(
-      {super.key,
-      required this.title,
-      required this.icon,
-      required this.myControler,
-      required this.passChar});
+  num ht;
+  double border;
+
+  MyTextField({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.myControler,
+    required this.passChar,
+    required this.ht,
+    required this.border
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +34,10 @@ class MyTextField extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(left: mWidth! / 35),
-          height: mHeight! / 15,
+          height: mHeight! / ht,
           width: mWidth! / 1.099,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(border),
             color: grey,
           ),
           child: Padding(

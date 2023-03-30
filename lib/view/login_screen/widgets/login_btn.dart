@@ -64,6 +64,7 @@ class LoginBtn extends StatelessWidget {
             ),
           ),
           backgroundColor: blue,
+          duration: Duration(seconds: 2),
         ),
       );
 
@@ -87,6 +88,7 @@ class LoginBtn extends StatelessWidget {
             ),
           ),
           backgroundColor: red,
+          duration: Duration(seconds: 2),
         ),
       );
     } else {
@@ -99,6 +101,7 @@ class LoginBtn extends StatelessWidget {
             ),
           ),
           backgroundColor: red,
+          duration: Duration(seconds: 2),
         ),
       );
     }

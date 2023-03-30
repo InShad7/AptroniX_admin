@@ -21,6 +21,8 @@ class LoginScreen extends StatelessWidget {
           const SignInText(),
           kHeight20,
           MyTextField(
+            ht: 15,
+            border: 20,
             title: 'Email Or Phone',
             icon: Icons.mail,
             myControler: userNameController,
@@ -28,6 +30,8 @@ class LoginScreen extends StatelessWidget {
           ),
           kHeight,
           MyTextField(
+            ht: 15,
+            border: 20,
             title: 'Password',
             icon: Icons.lock,
             myControler: passwordController,

@@ -26,7 +26,7 @@ class SignInText extends StatelessWidget {
             'Sign In',
             style: GoogleFonts.ubuntu(
               textStyle: TextStyle(
-                fontSize: mHeight! / 15,
+                fontSize: mHeight! / 16,
                 color: black,
                 fontWeight: FontWeight.bold,
               ),
