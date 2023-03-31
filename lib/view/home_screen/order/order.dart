@@ -10,6 +10,8 @@ class OrderList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyListBuilder(
+      shrinkwrap:false,
+      physics: null,
       ht: 14,
       contents: InkWell(
         child: Padding(

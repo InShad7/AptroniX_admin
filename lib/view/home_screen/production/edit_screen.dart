@@ -1,5 +1,5 @@
 import 'package:aptronix/utils/utils.dart';
-import 'package:aptronix/view/home_screen/production/edit_screen.dart';
+import 'package:aptronix/view/home_screen/home_screen.dart';
 import 'package:aptronix/view/home_screen/production/widget/curosel.dart';
 import 'package:aptronix/view/home_screen/production/widget/custom_btn.dart';
 import 'package:aptronix/view/home_screen/production/widget/details_field.dart';
@@ -7,13 +7,13 @@ import 'package:aptronix/view/home_screen/widgets/my_appbar.dart';
 import 'package:aptronix/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+class EditScreen extends StatelessWidget {
+  const EditScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context, title: 'Product Details'),
+      appBar: MyAppBar(context, title: 'Edit Product'),
       body: ListView(
         children: [
           customCurosel(),
@@ -25,7 +25,7 @@ class ProductDetails extends StatelessWidget {
               ht: mHeight! / 14,
               max: 1,
               num: false,
-              readOnly: true),
+              readOnly: false),
           Row(
             children: [
               detailsField(
@@ -35,7 +35,7 @@ class ProductDetails extends StatelessWidget {
                   ht: mHeight! / 14,
                   max: 1,
                   num: false,
-                  readOnly: true),
+                  readOnly: false),
               detailsField(
                   label: 'Quantity',
                   content: '5',
@@ -43,7 +43,7 @@ class ProductDetails extends StatelessWidget {
                   ht: mHeight! / 14,
                   max: 1,
                   num: true,
-                  readOnly: true),
+                  readOnly: false),
             ],
           ),
           Row(
@@ -55,7 +55,7 @@ class ProductDetails extends StatelessWidget {
                   ht: mHeight! / 14,
                   max: 1,
                   num: true,
-                  readOnly: true),
+                  readOnly: false),
               detailsField(
                   label: 'Color',
                   content: 'Deep Purple',
@@ -63,7 +63,7 @@ class ProductDetails extends StatelessWidget {
                   ht: mHeight! / 14,
                   max: 1,
                   num: false,
-                  readOnly: true),
+                  readOnly: false),
             ],
           ),
           detailsField(
@@ -73,7 +73,7 @@ class ProductDetails extends StatelessWidget {
               ht: mHeight! / 14,
               max: 1,
               num: true,
-              readOnly: true),
+              readOnly: false),
           detailsField(
               label: "Description",
               content:
@@ -82,12 +82,12 @@ class ProductDetails extends StatelessWidget {
               ht: mHeight! / 5.5,
               max: 10,
               num: false,
-              readOnly: true),
+              readOnly: false),
           // kHeight100,
         ],
       ),
-      bottomNavigationBar:
-          customBtn(context: context, title: 'Edit', navigateTo: EditScreen()),
+      bottomNavigationBar: customBtn(
+          navigateTo: HomeScreen(), context: context, title: 'Update'),
     );
   }
 }

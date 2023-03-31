@@ -63,7 +63,7 @@ class LoginBtn extends StatelessWidget {
               textStyle: TextStyle(fontSize: mHeight! / 55),
             ),
           ),
-          backgroundColor: blue,
+          backgroundColor: Colors.green,
           duration: Duration(seconds: 2),
         ),
       );
