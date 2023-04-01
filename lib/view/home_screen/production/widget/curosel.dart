@@ -1,4 +1,4 @@
-import 'package:aptronix/view/login_screen/login_screen.dart';
+import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 

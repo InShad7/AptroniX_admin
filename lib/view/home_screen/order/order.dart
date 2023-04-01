@@ -1,6 +1,6 @@
-import 'package:aptronix/view/home_screen/order/order_details.dart';
-import 'package:aptronix/view/home_screen/widgets/my_list_view_builder.dart';
-import 'package:aptronix/view/login_screen/login_screen.dart';
+import 'package:aptronixadmin/view/home_screen/order/order_details.dart';
+import 'package:aptronixadmin/view/home_screen/widgets/my_list_view_builder.dart';
+import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

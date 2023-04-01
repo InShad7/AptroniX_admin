@@ -1,5 +1,5 @@
-import 'package:aptronix/view/home_screen/home_screen.dart';
-import 'package:aptronix/view/login_screen/login_screen.dart';
+import 'package:aptronixadmin/view/home_screen/home_screen.dart';
+import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';

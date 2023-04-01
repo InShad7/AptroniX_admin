@@ -1,7 +1,7 @@
-import 'package:aptronix/utils/utils.dart';
-import 'package:aptronix/view/login_screen/widgets/login_btn.dart';
-import 'package:aptronix/view/login_screen/widgets/main_card.dart';
-import 'package:aptronix/view/login_screen/widgets/text_field.dart';
+import 'package:aptronixadmin/utils/utils.dart';
+import 'package:aptronixadmin/view/login_screen/widgets/login_btn.dart';
+import 'package:aptronixadmin/view/login_screen/widgets/main_card.dart';
+import 'package:aptronixadmin/view/login_screen/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 double? mWidth;

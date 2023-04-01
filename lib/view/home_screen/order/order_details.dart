@@ -1,10 +1,10 @@
-import 'package:aptronix/utils/color.dart';
-import 'package:aptronix/utils/utils.dart';
-import 'package:aptronix/view/home_screen/order/widget/drop_down_list.dart';
-import 'package:aptronix/view/home_screen/order/widget/orderItem.dart';
-import 'package:aptronix/view/home_screen/production/widget/details_field.dart';
-import 'package:aptronix/view/home_screen/widgets/my_appbar.dart';
-import 'package:aptronix/view/login_screen/login_screen.dart';
+import 'package:aptronixadmin/utils/color.dart';
+import 'package:aptronixadmin/utils/utils.dart';
+import 'package:aptronixadmin/view/home_screen/order/widget/drop_down_list.dart';
+import 'package:aptronixadmin/view/home_screen/order/widget/orderItem.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/details_field.dart';
+import 'package:aptronixadmin/view/home_screen/widgets/my_appbar.dart';
+import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

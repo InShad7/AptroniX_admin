@@ -1,5 +1,5 @@
-import 'package:aptronix/utils/color.dart';
-import 'package:aptronix/utils/utils.dart';
+import 'package:aptronixadmin/utils/color.dart';
+import 'package:aptronixadmin/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

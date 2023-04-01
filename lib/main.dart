@@ -1,5 +1,5 @@
-import 'package:aptronix/view/login_screen/login_screen.dart';
-import 'package:aptronix/view/splash_screen/splash_screen.dart';
+import 'package:aptronixadmin/view/login_screen/login_screen.dart';
+import 'package:aptronixadmin/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

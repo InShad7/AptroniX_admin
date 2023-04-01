@@ -1,11 +1,10 @@
-import 'package:aptronix/utils/color.dart';
-import 'package:aptronix/utils/utils.dart';
-import 'package:aptronix/view/home_screen/home_screen.dart';
-import 'package:aptronix/view/home_screen/production/widget/add_curosel_img.dart';
-import 'package:aptronix/view/home_screen/production/widget/custom_btn.dart';
-import 'package:aptronix/view/home_screen/production/widget/details_field.dart';
-import 'package:aptronix/view/home_screen/widgets/my_appbar.dart';
-import 'package:aptronix/view/login_screen/login_screen.dart';
+import 'package:aptronixadmin/utils/utils.dart';
+import 'package:aptronixadmin/view/home_screen/home_screen.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/add_curosel_img.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/details_field.dart';
+import 'package:aptronixadmin/view/home_screen/widgets/my_appbar.dart';
+import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class AddProductScreen extends StatelessWidget {
