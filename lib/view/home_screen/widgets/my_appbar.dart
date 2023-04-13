@@ -1,3 +1,4 @@
+import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,12 @@ AppBar MyAppBar(BuildContext context, {required String title}) {
     centerTitle: true,
     iconTheme: IconThemeData(color: black),
     leading: IconButton(
-        onPressed: () => Navigator.pop(context),
-        icon: Icon(Icons.arrow_back_ios_new)),
+      onPressed: () {
+        Navigator.pop(context);
+        clear();
+      },
+      icon: const Icon(Icons.arrow_back_ios_new),
+    ),
     title: Text(
       title,
       style: GoogleFonts.ubuntu(

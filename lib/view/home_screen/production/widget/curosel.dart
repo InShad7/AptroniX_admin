@@ -2,18 +2,11 @@ import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-final imgUrl = [
-  'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-storage-select-202209-6-1inch-deeppurple?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663790290205',
-  'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple_AV1_GEO_EMEA?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1661969351334',
-  'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-2-202209_GEO_EMEA?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660753617539',
-  'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple_AV2?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1660754255928',
-];
-
-CarouselSlider customCurosel() {
+CarouselSlider customCurosel(product) {
   return CarouselSlider.builder(
-    itemCount: imgUrl.length,
+    itemCount: product['images'].length,
     itemBuilder: (context, index, realIndex) {
-      final urlImg = imgUrl[index];
+      final urlImg = product['images'][index];
       return buildImage(urlImg, index);
     },
     options: CarouselOptions(

@@ -1,8 +1,10 @@
+import 'package:aptronixadmin/controller/controller.dart';
+import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/home_screen.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/add_curosel_img.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
-import 'package:aptronixadmin/view/home_screen/production/widget/text_field.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/custom_field.dart';
 import 'package:aptronixadmin/view/home_screen/widgets/my_appbar.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,81 +15,85 @@ class AddProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Color.fromARGB(255, 251, 251, 251),
       appBar: MyAppBar(context, title: 'Add Product'),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
-          setCuroselImg(),
+          SetCuroselImg(),
           kHeight,
-          detailsField(
+          customField2(
+              controller: nameController,
               label: 'Product Name',
-              content: 'iPhone 14 Pro',
               width: mWidth!,
-              ht: mHeight! / 14,
-              max: 1,
+              max: false,
               num: false,
+              height: mHeight! / 16,
               readOnly: false),
           Row(
             children: [
-              detailsField(
+              customField2(
+                  controller: categoryController,
                   label: 'Category',
-                  content: 'iPhone',
                   width: mWidth! / 2,
-                  ht: mHeight! / 14,
-                  max: 1,
+                  height: mHeight! / 16,
+                  max: false,
                   num: false,
                   readOnly: false),
-              detailsField(
+              customField2(
+                  controller: quantityController,
                   label: 'Quantity',
-                  content: '5',
-                  width: mWidth! / 3.3,
-                  ht: mHeight! / 14,
-                  max: 1,
+                  width: mWidth! / 2.9,
+                  height: mHeight! / 16,
+                  max: false,
                   num: true,
                   readOnly: false),
             ],
           ),
           Row(
             children: [
-              detailsField(
+              customField2(
+                  controller: sizeController,
                   label: 'Size',
-                  content: '256',
                   width: mWidth! / 3,
-                  ht: mHeight! / 14,
-                  max: 1,
+                  height: mHeight! / 16,
+                  max: false,
                   num: true,
                   readOnly: false),
-              detailsField(
+              customField2(
+                  controller: colorController,
                   label: 'Color',
-                  content: 'Deep Purple',
-                  width: mWidth! / 2.1,
-                  ht: mHeight! / 14,
-                  max: 1,
+                  width: mWidth! / 1.99,
+                  height: mHeight! / 16,
+                  max: false,
                   num: false,
                   readOnly: false),
             ],
           ),
-          detailsField(
+          customField2(
+              controller: priceController,
               label: 'Price',
-              content: '1,19,990',
               width: mWidth!,
-              ht: mHeight! / 14,
-              max: 1,
+              height: mHeight! / 16,
+              max: false,
               num: true,
               readOnly: false),
-          detailsField(
+          customField2(
+              controller: descriptionController,
               label: "Description",
-              content:
-                  '128 GB ROM\n15.49cm (6.1inch)Super Retina XDR display\n48MP + 12MP + 12MP|12MP Front Camera\nA16 Bionic Chip 6 Core Processor',
               width: mWidth!,
-              ht: mHeight! / 5.5,
-              max: 10,
+              height: mHeight! / 5.5,
+              max: true,
               num: false,
               readOnly: false),
           // kHeight100,
         ],
       ),
-      bottomNavigationBar:
-          customBtn(navigateTo: HomeScreen(), context: context, title: 'Save'),
+      bottomNavigationBar: addBtn(
+        navigateTo: HomeScreen(),
+        context: context,
+        title: 'Save',
+      ),
     );
   }
 }

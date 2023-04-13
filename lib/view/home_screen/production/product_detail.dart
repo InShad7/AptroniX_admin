@@ -1,5 +1,6 @@
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/production/edit_screen.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/add_curosel_img.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/curosel.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/text_field.dart';
@@ -8,7 +9,8 @@ import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+  const ProductDetails({super.key, required this.product});
+  final product;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,11 @@ class ProductDetails extends StatelessWidget {
       appBar: MyAppBar(context, title: 'Product Details'),
       body: ListView(
         children: [
-          customCurosel(),
+          customCurosel(product),
           kHeight,
           detailsField(
               label: 'Product Name',
-              content: 'iPhone 14 Pro',
+              content: product['name'],
               width: mWidth!,
               ht: mHeight! / 14,
               max: 1,
@@ -30,7 +32,7 @@ class ProductDetails extends StatelessWidget {
             children: [
               detailsField(
                   label: 'Category',
-                  content: 'iPhone',
+                  content: product['category'],
                   width: mWidth! / 2,
                   ht: mHeight! / 14,
                   max: 1,
@@ -38,7 +40,7 @@ class ProductDetails extends StatelessWidget {
                   readOnly: true),
               detailsField(
                   label: 'Quantity',
-                  content: '5',
+                  content: product['quantity'].toString(),
                   width: mWidth! / 3.3,
                   ht: mHeight! / 14,
                   max: 1,
@@ -50,44 +52,47 @@ class ProductDetails extends StatelessWidget {
             children: [
               detailsField(
                   label: 'Size',
-                  content: '256',
+                  content: product['size'].toString(),
                   width: mWidth! / 3,
                   ht: mHeight! / 14,
                   max: 1,
                   num: true,
                   readOnly: true),
               detailsField(
-                  label: 'Color',
-                  content: 'Deep Purple',
-                  width: mWidth! / 2.1,
-                  ht: mHeight! / 14,
-                  max: 1,
-                  num: false,
-                  readOnly: true),
+                label: 'Color',
+                content: product['color'],
+                width: mWidth! / 2.1,
+                ht: mHeight! / 14,
+                max: 1,
+                num: false,
+                readOnly: true,
+              ),
             ],
           ),
           detailsField(
               label: 'Price',
-              content: '1,19,990',
+              content: "₹ ${product['price'].toString()}",
               width: mWidth!,
               ht: mHeight! / 14,
               max: 1,
               num: true,
               readOnly: true),
           detailsField(
-              label: "Description",
-              content:
-                  '128 GB ROM\n15.49cm (6.1inch)Super Retina XDR display\n48MP + 12MP + 12MP|12MP Front Camera\nA16 Bionic Chip 6 Core Processor',
-              width: mWidth!,
-              ht: mHeight! / 5.5,
-              max: 10,
-              num: false,
-              readOnly: true),
+            label: "Description",
+            content: product['description'],
+            width: mWidth!,
+            ht: mHeight! / 5.5,
+            max: 7,
+            readOnly: true,
+            num: false,
+          ),
           // kHeight100,
         ],
       ),
-      bottomNavigationBar:
-          customBtn(context: context, title: 'Edit', navigateTo: EditScreen()),
+      bottomNavigationBar: navigateBtn(
+          context: context,
+          title: 'Edit',
+          navigateTo: EditScreen(product: product)),
     );
   }
 }

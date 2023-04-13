@@ -1,24 +1,22 @@
 import 'package:aptronixadmin/utils/color.dart';
-import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget detailsField({
+Widget customField2({
   required String label,
-  required double ht,
+  required double height,
   required double width,
   required bool num,
-  required int max,
-  String content = '',
-  required bool readOnly,
+  TextEditingController? controller,
+  required bool max,
+  bool readOnly = true,
 }) {
   return Padding(
-    padding: EdgeInsets.only(left: mWidth! / 22, right: mWidth! / 22),
+    padding: const EdgeInsets.only(left: 16.0, right: 16, top: 8),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        kHeight,
         Text(
           " $label",
           style: GoogleFonts.sora(
@@ -26,30 +24,36 @@ Widget detailsField({
         ),
         Container(
           decoration: BoxDecoration(
-            color: grey,
-            borderRadius: BorderRadius.circular(18),
-          ),
-          height: ht,
+              color: white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: grey)),
+          height: height,
           width: width,
-          child: customField(num, max, content, readOnly),
+          child: customField(num, max, controller!, readOnly),
         ),
       ],
     ),
   );
 }
 
-Widget customField(bool num, int max, String content, bool readOnly) {
+Widget customField(
+    bool num, bool max, TextEditingController controller, bool readOnly) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
-      // controller: myController,
-      minLines: 1,
-      initialValue: content,
       readOnly: readOnly,
-      maxLines: max,
+      cursorColor: black,
+      controller: controller,
+      minLines: 1,
+      maxLines: max ? 6 : 1,
       keyboardType: num ? TextInputType.number : TextInputType.text,
       textAlignVertical: TextAlignVertical.center,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
+        hintText: 'Tap to add',
+        hintStyle: GoogleFonts.ubuntu(
+          height: 1.3,
+          textStyle: TextStyle(color: grey, fontSize: mHeight! / 47),
+        ),
         filled: true,
         fillColor: Colors.transparent,
         border: InputBorder.none,

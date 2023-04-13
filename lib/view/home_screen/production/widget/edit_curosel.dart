@@ -2,25 +2,28 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/add_curosel_img.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class SetCuroselImg extends StatelessWidget {
-  const SetCuroselImg({super.key});
-
+class EditCuroselImg extends StatelessWidget {
+  const EditCuroselImg({super.key, this.product});
+  final product;
   @override
   Widget build(BuildContext context) {
+    for (int i = 0; i < product['images'].length; i++) {
+      imgUrl.add(product['images'][i]);
+    }
+
     return SizedBox(
       height: 350,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
         child: Row(
-          children: const [
-            AddImgCard(),
-            AddImgCard(),
-            AddImgCard(),
-            AddImgCard(),
+          children: [
+            for (var image in product['images']) AddImgCard2(img: image),
+            AddImgCard()
           ],
         ),
       ),
@@ -28,20 +31,21 @@ class SetCuroselImg extends StatelessWidget {
   }
 }
 
-class AddImgCard extends StatefulWidget {
-  const AddImgCard({super.key});
+class AddImgCard2 extends StatefulWidget {
+  const AddImgCard2({super.key, this.img});
+  final img;
 
   @override
-  State<AddImgCard> createState() => _AddImgCardState();
+  State<AddImgCard2> createState() => _AddImgCard2State();
 }
 
-class _AddImgCardState extends State<AddImgCard> {
+class _AddImgCard2State extends State<AddImgCard2> {
   String? imagePath;
 
   @override
   Widget build(BuildContext context) {
-    // log(imagePath.toString());
-    // log(imgUrl.toString());
+    log(imagePath.toString());
+    log(imgUrl.toString());
     return Container(
       margin: const EdgeInsets.all(16),
       height: 300,
@@ -52,7 +56,7 @@ class _AddImgCardState extends State<AddImgCard> {
         border: Border.all(color: grey),
         image: DecorationImage(
           image: imagePath == null
-              ? const AssetImage('assets/2929936.jpg') as ImageProvider
+              ? NetworkImage(widget.img) as ImageProvider
               : FileImage(File(imagePath!)),
           fit: BoxFit.contain,
         ),
@@ -72,7 +76,8 @@ class _AddImgCardState extends State<AddImgCard> {
                   imagePath = pickedFile.path;
                 });
 
-                uploadImage(File(pickedFile.path));
+                updateImage(File(pickedFile.path), widget.img);
+                // imgUrl.clear();
               }
             },
             icon: const Icon(
