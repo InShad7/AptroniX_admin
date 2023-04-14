@@ -1,6 +1,6 @@
+import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/production/edit_screen.dart';
-import 'package:aptronixadmin/view/home_screen/production/widget/add_curosel_img.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/curosel.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/text_field.dart';
@@ -14,9 +14,11 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: MyAppBar(context, title: 'Product Details'),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           customCurosel(product),
           kHeight,

@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
           MyTextField(
             ht: 15,
             border: 20,
-            title: 'Email Or Phone',
+            title: 'Email.',
             icon: Icons.mail,
             myControler: userNameController,
             passChar: false,

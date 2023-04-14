@@ -42,6 +42,7 @@ Widget customField(bool num, int max, String content, bool readOnly) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
+      enableInteractiveSelection: false,
       // controller: myController,
       minLines: 1,
       initialValue: content,

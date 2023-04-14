@@ -1,13 +1,18 @@
 import 'dart:developer';
-
 import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/model/model.dart';
 import 'package:aptronixadmin/utils/color.dart';
+import 'package:aptronixadmin/view/home_screen/home_screen.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget addBtn({context, required Widget navigateTo, required String title}) {
+Widget addBtn(
+    {context,
+    required Widget navigateTo,
+    required String title,
+    bool add = true,
+    product}) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: SizedBox(
@@ -21,7 +26,6 @@ Widget addBtn({context, required Widget navigateTo, required String title}) {
           ),
         ),
         onPressed: () {
-          
           Product myProduct = Product(
               name: nameController.text,
               category: categoryController.text,
@@ -31,10 +35,7 @@ Widget addBtn({context, required Widget navigateTo, required String title}) {
               quantity: int.parse(quantityController.text),
               size: int.parse(sizeController.text),
               images: imgUrl);
-
-          myProduct.addToFirestore();
-          // Navigator.pop(context);
-          log(imgUrl.toString());
+          add ? myProduct.addToFirestore() : updateDocument(product);
 
           Navigator.pushReplacement(
             context,

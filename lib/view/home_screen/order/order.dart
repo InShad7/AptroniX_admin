@@ -1,3 +1,4 @@
+import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/order/order_details.dart';
@@ -18,62 +19,86 @@ class OrderList extends StatelessWidget {
           const SearchBar(),
           kHeight20,
           Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              shrinkWrap: true,
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: mWidth! / 20,
-                      right: mWidth! / 20,
-                      top: mHeight! / 130),
-                  child: Container(
-                    height: mHeight! / 14,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: grey,
-                    ),
-                    child: InkWell(
-                      child: Padding(
-                        padding: const EdgeInsets.all(7.0),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(13.0),
-                              child: Text(
-                                'Order id: 123456789',
-                                style: GoogleFonts.ubuntu(
-                                    textStyle:
-                                        TextStyle(fontSize: mHeight! / 48),
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: mHeight! / 9),
-                              child: Text(
-                                'Delivered',
-                                style: GoogleFonts.ubuntu(
-                                    textStyle:
-                                        TextStyle(fontSize: mHeight! / 58),
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.green),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OrderDetails(),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+            child: StreamBuilder(
+                stream: getProducts(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.connectionState == ConnectionState.done ||
+                      snapshot.connectionState == ConnectionState.active) {
+                    if (snapshot.hasData) {
+                      final data = snapshot.data;
+                      return snapshot.data!.isEmpty
+                          ? const Center(child: Text('List empty'))
+                          : ListView.builder(
+                              itemCount: data.length,
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                final order = data[index];
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      left: mWidth! / 20,
+                                      right: mWidth! / 20,
+                                      top: mHeight! / 130),
+                                  child: Container(
+                                    height: mHeight! / 14,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: grey,
+                                    ),
+                                    child: InkWell(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(7.0),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(13.0),
+                                              child: SizedBox(
+                                                width: 200,
+                                                child: Text(
+                                                  order['name'],
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: GoogleFonts.ubuntu(
+                                                      textStyle: TextStyle(
+                                                          fontSize:
+                                                              mHeight! / 48),
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                ),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              'Delivered',
+                                              style: GoogleFonts.ubuntu(
+                                                  textStyle: TextStyle(
+                                                      fontSize: mHeight! / 58),
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.green),
+                                            ),
+                                            kWidth,
+                                          ],
+                                        ),
+                                      ),
+                                      onTap: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => OrderDetails(),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                    }
+                  }
+                  return const Text("Cant fetch Data");
+                }),
           )
         ],
       ),

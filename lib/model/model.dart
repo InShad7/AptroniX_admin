@@ -1,10 +1,7 @@
-import 'dart:io';
-
-import 'package:aptronixadmin/controller/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 class Product {
+  String? id;
   String? name;
   String? category;
   int? quantity;
@@ -22,27 +19,30 @@ class Product {
       this.size,
       this.color,
       this.description,
-      this.images});
-
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'category': category,
-      'quantity': quantity,
-      'size': size,
-      'color': color,
-      'price': price,
-      'description': description,
-      'images': images
-    };
-  }
+      this.images,
+      this.id});
 
   Future<void> addToFirestore() async {
     try {
-      await FirebaseFirestore.instance
-          .collection('products')
-          .doc(nameController.text)
-          .set(toMap());
+      final ref = FirebaseFirestore.instance.collection('products');
+
+      final docRef = ref.doc();
+      final id = docRef.id;
+      Map<String, dynamic> toMap() {
+        return {
+          "id": id,
+          'name': name,
+          'category': category,
+          'quantity': quantity,
+          'size': size,
+          'color': color,
+          'price': price,
+          'description': description,
+          'images': images
+        };
+      }
+
+      await docRef.set(toMap());
     } catch (e) {
       print('Error adding product: $e');
     }

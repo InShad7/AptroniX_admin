@@ -17,6 +17,7 @@ class EditScreen extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(context, title: 'Edit Product'),
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           EditCuroselImg(product: product),
           kHeight,
@@ -94,8 +95,13 @@ class EditScreen extends StatelessWidget {
           // kHeight100,
         ],
       ),
-      bottomNavigationBar:
-          addBtn(navigateTo: HomeScreen(), context: context, title: 'Update'),
+      bottomNavigationBar: addBtn(
+          navigateTo: HomeScreen(),
+          context: context,
+          title: 'Update',
+          add: false,
+         product: product
+          ),
     );
   }
 }
