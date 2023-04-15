@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 Widget detailsField({
   required String label,
-  required double ht,
-  required double width,
+   double? ht,
+   double? width,
   required bool num,
   required int max,
   String content = '',

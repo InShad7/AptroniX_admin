@@ -9,6 +9,7 @@ import 'package:aptronixadmin/view/home_screen/widgets/search_bar.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProductList extends StatefulWidget {
@@ -78,7 +79,7 @@ class _ProductListState extends State<ProductList> {
                                     child: Container(
                                       height: mHeight! / 11.7,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(18),
                                         color: grey,
                                       ),
                                       child: InkWell(
@@ -88,14 +89,14 @@ class _ProductListState extends State<ProductList> {
                                             children: [
                                               Container(
                                                 height: mHeight! / 14.3,
-                                                width: mWidth! / 6.3,
+                                                width: mWidth! / 6.6,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.circular(14),
+                                                      BorderRadius.circular(12),
                                                   image: DecorationImage(
                                                       image: NetworkImage(
                                                           product['images'][0]),
-                                                      fit: BoxFit.cover),
+                                                      fit: BoxFit.contain),
                                                 ),
                                               ),
                                               Padding(
@@ -126,7 +127,7 @@ class _ProductListState extends State<ProductList> {
                                                     fontWeight:
                                                         FontWeight.w400),
                                               ),
-                                              kWidth,
+                                              kWidth20,
                                             ],
                                           ),
                                         ),
@@ -172,9 +173,19 @@ class _ProductListState extends State<ProductList> {
             onPressed: () async {
               deleteProduct(product);
               Navigator.pop(context);
+
               setState(() {
                 productStream = getProducts();
               });
+              Fluttertoast.showToast(
+                msg: "Deleted.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: deleteRed,
+                textColor: Colors.white,
+                fontSize: 17.0,
+              );
             },
             child: Text(
               'DELETE',

@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:aptronixadmin/model/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +13,8 @@ TextEditingController colorController = TextEditingController();
 TextEditingController priceController = TextEditingController();
 TextEditingController descriptionController = TextEditingController();
 TextEditingController idController = TextEditingController();
+
+TextEditingController searchController = TextEditingController();
 
 List imgUrl = [];
 
@@ -57,24 +58,6 @@ Future<void> deleteProduct(String productId) {
   return productsRef.doc(productId).delete();
 }
 
-Future<void> updateDocument(product) async {
-  final docRef =
-      FirebaseFirestore.instance.collection('products').doc(product['id']);
-  log(docRef.toString());
-
-  await docRef.update(dataToUpdate);
-}
-
-Map<String, dynamic> dataToUpdate = {
-  'name': nameController.text,
-  "category": categoryController.text,
-  'color': colorController.text,
-  'description': descriptionController.text,
-  'price': priceController.text,
-  'quantity': quantityController.text,
-  'size': sizeController.text,
-  'images': imgUrl
-};
 clear() {
   nameController.clear();
   categoryController.clear();

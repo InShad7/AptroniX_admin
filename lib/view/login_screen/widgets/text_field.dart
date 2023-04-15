@@ -1,5 +1,6 @@
 import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
+import 'package:aptronixadmin/view/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,15 +19,14 @@ class MyTextField extends StatelessWidget {
   num ht;
   double border;
 
-  MyTextField({
-    super.key,
-    required this.title,
-    required this.icon,
-    required this.myControler,
-    required this.passChar,
-    required this.ht,
-    required this.border
-  });
+  MyTextField(
+      {super.key,
+      required this.title,
+      required this.icon,
+      required this.myControler,
+      required this.passChar,
+      required this.ht,
+      required this.border});
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +56,6 @@ class MyTextField extends StatelessWidget {
                   textStyle: TextStyle(fontSize: mHeight! / 44),
                 ),
               ),
-              // validator: (value) {
-              //   if (value == null || value.isEmpty || value.trim() == '') {
-              //     return 'Please Enter Credential';
-              //   }
-              //   return null;
-              // },
             ),
           ),
         ),

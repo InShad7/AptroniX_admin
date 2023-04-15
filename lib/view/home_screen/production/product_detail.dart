@@ -14,7 +14,6 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       appBar: MyAppBar(context, title: 'Product Details'),
       body: ListView(
@@ -25,9 +24,7 @@ class ProductDetails extends StatelessWidget {
           detailsField(
               label: 'Product Name',
               content: product['name'],
-              width: mWidth!,
-              ht: mHeight! / 14,
-              max: 1,
+              max: 3,
               num: false,
               readOnly: true),
           Row(
@@ -80,11 +77,9 @@ class ProductDetails extends StatelessWidget {
               num: true,
               readOnly: true),
           detailsField(
-            label: "Description",
+            label: "About this product",
             content: product['description'],
-            width: mWidth!,
-            ht: mHeight! / 5.5,
-            max: 7,
+            max: 15,
             readOnly: true,
             num: false,
           ),

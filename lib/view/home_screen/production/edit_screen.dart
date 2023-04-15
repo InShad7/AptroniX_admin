@@ -1,9 +1,9 @@
 import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/home_screen.dart';
-import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_field.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/edit_curosel.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/updateBtn.dart';
 import 'package:aptronixadmin/view/home_screen/widgets/my_appbar.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -86,22 +86,18 @@ class EditScreen extends StatelessWidget {
           customField2(
               controller: descriptionController =
                   TextEditingController(text: product['description']),
-              label: "Description",
-              width: mWidth!,
-              height: mHeight! / 5.5,
+              label: "About this product",
               max: true,
               num: false,
               readOnly: false),
           // kHeight100,
         ],
       ),
-      bottomNavigationBar: addBtn(
+      bottomNavigationBar: updateBtn(
           navigateTo: HomeScreen(),
           context: context,
           title: 'Update',
-          add: false,
-         product: product
-          ),
+          product: product),
     );
   }
 }

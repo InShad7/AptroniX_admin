@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
-import 'package:aptronixadmin/view/home_screen/production/edit_screen.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/add_curosel_img.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -96,6 +95,7 @@ class _AddImgCard2State extends State<AddImgCard2> {
               IconButton(
                 onPressed: () {
                   deleteImage(widget.img, widget.product, widget.index);
+
                   imgUrl.removeAt(widget.index);
                 },
                 icon: Icon(Icons.delete_outline),

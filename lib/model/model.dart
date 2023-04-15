@@ -47,4 +47,25 @@ class Product {
       print('Error adding product: $e');
     }
   }
+
+  Future<void> updateDocument(product) async {
+    final docRef =
+        FirebaseFirestore.instance.collection('products').doc(product['id']);
+    // log(docRef.toString());
+
+    await docRef.update(dataToUpdate());
+  }
+
+  Map<String, dynamic> dataToUpdate() {
+    return {
+      'name': name,
+      'category': category,
+      'quantity': quantity,
+      'size': size,
+      'color': color,
+      'price': price,
+      'description': description,
+      'images': images
+    };
+  }
 }

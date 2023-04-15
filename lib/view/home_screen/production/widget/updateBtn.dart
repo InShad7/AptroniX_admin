@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget addBtn(
+Widget updateBtn(
     {context, required Widget navigateTo, required String title, product}) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
@@ -21,7 +21,7 @@ Widget addBtn(
           ),
         ),
         onPressed: () {
-          validateAndAdd(context, navigateTo);
+          validateAndUpdate(context, navigateTo, product);
         },
         child: Text(
           title,
@@ -34,7 +34,7 @@ Widget addBtn(
   );
 }
 
-void validateAndAdd(context, Widget navigateTo) {
+void validateAndUpdate(context, Widget navigateTo, product) {
   if (nameController.text.isEmpty ||
       categoryController.text.isEmpty ||
       quantityController.text.isEmpty ||
@@ -52,11 +52,11 @@ void validateAndAdd(context, Widget navigateTo) {
           ),
         ),
         backgroundColor: deleteRed,
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       ),
     );
   } else {
-    Product myProduct = Product(
+    Product updateProduct = Product(
         name: nameController.text,
         category: categoryController.text,
         color: colorController.text,
@@ -65,7 +65,7 @@ void validateAndAdd(context, Widget navigateTo) {
         quantity: int.parse(quantityController.text),
         size: int.parse(sizeController.text),
         images: imgUrl);
-    myProduct.addToFirestore();
+    updateProduct.updateDocument(product);
 
     Navigator.pushReplacement(
       context,
@@ -75,7 +75,7 @@ void validateAndAdd(context, Widget navigateTo) {
     );
     clear();
     Fluttertoast.showToast(
-      msg: "Product added.",
+      msg: "Product updated.",
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
@@ -84,37 +84,4 @@ void validateAndAdd(context, Widget navigateTo) {
       fontSize: 17.0,
     );
   }
-}
-
-Widget navigateBtn(
-    {context, required String title, required Widget navigateTo}) {
-  return Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: SizedBox(
-      height: mHeight! / 15,
-      width: mWidth,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: blue,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
-          ),
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => navigateTo,
-            ),
-          );
-        },
-        child: Text(
-          title,
-          style: GoogleFonts.ubuntu(
-            textStyle: TextStyle(fontSize: mHeight! / 36),
-          ),
-        ),
-      ),
-    ),
-  );
 }

@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 Widget customField2({
   required String label,
-  required double height,
-  required double width,
+  double? height,
+  double? width,
   required bool num,
   TextEditingController? controller,
   required bool max,
@@ -45,7 +45,7 @@ Widget customField(
       cursorColor: black,
       controller: controller,
       minLines: 1,
-      maxLines: max ? 6 : 1,
+      maxLines: max ? 15 : 1,
       keyboardType: num ? TextInputType.number : TextInputType.text,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(

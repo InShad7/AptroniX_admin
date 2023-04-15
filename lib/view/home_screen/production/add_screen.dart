@@ -81,19 +81,14 @@ class AddProductScreen extends StatelessWidget {
           customField2(
               controller: descriptionController,
               label: "Description",
-              width: mWidth!,
-              height: mHeight! / 5.5,
               max: true,
               num: false,
               readOnly: false),
           // kHeight100,
         ],
       ),
-      bottomNavigationBar: addBtn(
-        navigateTo: HomeScreen(),
-        context: context,
-        title: 'Save',
-      ),
+      bottomNavigationBar:
+          addBtn(navigateTo: HomeScreen(), context: context, title: 'Save'),
     );
   }
 }
