@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +20,12 @@ List imgUrl = [];
 Stream getProducts() async* {
   final QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection('products').get();
+  final List<DocumentSnapshot> docs = querySnapshot.docs;
+  yield docs;
+}
+Stream getImgs() async* {
+  final QuerySnapshot querySnapshot =
+      await FirebaseFirestore.instance.collection('FeatureImage').get();
   final List<DocumentSnapshot> docs = querySnapshot.docs;
   yield docs;
 }

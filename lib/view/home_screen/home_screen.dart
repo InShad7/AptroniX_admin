@@ -1,4 +1,5 @@
 import 'package:aptronixadmin/utils/color.dart';
+import 'package:aptronixadmin/view/home_screen/feature_img/feature_img.dart';
 import 'package:aptronixadmin/view/home_screen/order/order.dart';
 import 'package:aptronixadmin/view/home_screen/production/product_list.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
@@ -12,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: white,
@@ -55,10 +56,14 @@ class HomeScreen extends StatelessWidget {
               Tab(
                 text: 'Orders',
               ),
+              Tab(
+                text: 'Banner Img',
+              ),
             ],
           ),
         ),
-        body: const TabBarView(children: [ProductList(), OrderList()]),
+        body:  TabBarView(
+            children: [ProductList(), OrderList(), FeatureImg()]),
       ),
     );
   }

@@ -69,3 +69,33 @@ class Product {
     };
   }
 }
+
+class FeatureImage {
+  List? images;
+  // String? id;
+
+  FeatureImage({
+    this.images,
+    // this.id,
+  });
+
+  Future<void> addFeatureImg() async {
+    try {
+      final ref = FirebaseFirestore.instance.collection('FeatureImage');
+      final docRef = ref.doc('images');
+      // final id = docRef.id;
+
+      Map<String, dynamic> saveImg() {
+        return {'images': images};
+      }
+
+      await docRef.set(saveImg());
+    } catch (e) {
+      print('Error adding product: $e');
+    }
+  }
+
+  
+
+
+}

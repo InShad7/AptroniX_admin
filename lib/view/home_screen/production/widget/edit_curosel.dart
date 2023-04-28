@@ -92,14 +92,14 @@ class _AddImgCard2State extends State<AddImgCard2> {
                 ),
                 color: grey1,
               ),
-              IconButton(
-                onPressed: () {
-                  deleteImage(widget.img, widget.product, widget.index);
+              // IconButton(
+              //   onPressed: () {
+              //     deleteImage(widget.img, widget.product, widget.index);
 
-                  imgUrl.removeAt(widget.index);
-                },
-                icon: Icon(Icons.delete_outline),
-              ),
+              //     imgUrl.removeAt(widget.index);
+              //   },
+              //   icon: Icon(Icons.delete_outline),
+              // ),
             ],
           ),
         ],
