@@ -61,7 +61,7 @@ void validateAndUpdate(context, Widget navigateTo, product) {
         category: categoryController.text,
         color: colorController.text,
         description: descriptionController.text,
-        price: double.parse(priceController.text),
+        price: priceController.text,
         quantity: int.parse(quantityController.text),
         size: int.parse(sizeController.text),
         images: imgUrl);

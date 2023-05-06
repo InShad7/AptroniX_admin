@@ -1,11 +1,19 @@
+import 'dart:developer';
+
 import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
+import 'package:aptronixadmin/view/home_screen/production/product_list.dart';
+import 'package:aptronixadmin/view/search_screen/widget/product_card.dart';
 import 'package:flutter/material.dart';
 
-
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +31,13 @@ class SearchScreen extends StatelessWidget {
                   prefixIcon: Icon(Icons.search, color: blue),
                   suffixIcon: IconButton(
                     icon: Icon(Icons.clear, color: blue),
-                    onPressed: () => searchController.clear(),
+                    onPressed: () {
+                      setState(() {
+                        searchController.clear();
+                        searchList = myProduct;
+                        log('controller2 ${searchController.text}');
+                      });
+                    },
                   ),
                   filled: true,
                   fillColor: const Color.fromRGBO(234, 236, 238, 2),
@@ -33,13 +47,29 @@ class SearchScreen extends StatelessWidget {
                   hintText: 'Search . . .',
                 ),
                 onChanged: (value) {
-                  // title
-                  //     .where((element) => element
-                  //         .toString()
-                  //         .toLowerCase()
-                  //         .contains(value.toLowerCase()))
-                  //     .toList();
+                  log(value);
+                  setState(() {
+                    searchList = myProduct
+                        .where((element) => element['name']
+                            .toLowerCase()
+                            .replaceAll(RegExp(r"\s+"), "")
+                            .replaceAll(RegExp(r"[()]"), "")
+                            .contains(value
+                                .toLowerCase()
+                                .replaceAll(RegExp(r"\s+"), "")))
+                        .toList();
+                  });
+
+                  log(searchList.length.toString());
                 },
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: 1,
+                itemBuilder: (context, index) => ProductCard(search: true),
               ),
             ),
           ],

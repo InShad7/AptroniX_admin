@@ -16,6 +16,8 @@ TextEditingController idController = TextEditingController();
 TextEditingController searchController = TextEditingController();
 
 List imgUrl = [];
+List searchList = [];
+List myProduct = [];
 
 Stream getProducts() async* {
   final QuerySnapshot querySnapshot =

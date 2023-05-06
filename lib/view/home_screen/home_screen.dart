@@ -1,3 +1,4 @@
+import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/view/home_screen/feature_img/feature_img.dart';
 import 'package:aptronixadmin/view/home_screen/order/order.dart';
@@ -41,6 +42,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
           bottom: TabBar(
+            onTap: (_) {
+              imgUrl.clear();
+            },
             labelColor: black,
             unselectedLabelColor: black,
             indicatorSize: TabBarIndicatorSize.label,
@@ -62,8 +66,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        body:  TabBarView(
-            children: [ProductList(), OrderList(), FeatureImg()]),
+        body: TabBarView(children: [ProductList(), OrderList(), FeatureImg()]),
       ),
     );
   }

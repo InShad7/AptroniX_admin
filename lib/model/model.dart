@@ -7,7 +7,7 @@ class Product {
   int? quantity;
   int? size;
   String? color;
-  double? price;
+  String? price;
   String? description;
   List? images;
 
@@ -94,8 +94,4 @@ class FeatureImage {
       print('Error adding product: $e');
     }
   }
-
-  
-
-
 }

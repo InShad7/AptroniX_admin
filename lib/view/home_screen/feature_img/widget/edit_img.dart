@@ -22,15 +22,12 @@ class EditFeatureImg extends StatelessWidget {
     return SizedBox(
       height: mHeight,
       child: SingleChildScrollView(
-        // scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            for (var i = 0; i < product[0]['images'].length; i++)
-              AddImgCard2(
-                  img: product[0]['images'][i], product: product, index: i),
+            for (var i = 0; i < imgUrl.length; i++)
+              AddImgCard2(img: imgUrl[i], product: product, index: i),
             AddImgCard()
-           
           ],
         ),
       ),

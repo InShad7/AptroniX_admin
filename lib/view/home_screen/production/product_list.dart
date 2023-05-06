@@ -48,6 +48,7 @@ class _ProductListState extends State<ProductList> {
                       snapshot.connectionState == ConnectionState.active) {
                     if (snapshot.hasData) {
                       final data = snapshot.data;
+                      myProduct = data;
                       return snapshot.data!.isEmpty
                           ? const Center(child: Text('List empty'))
                           : ListView.builder(

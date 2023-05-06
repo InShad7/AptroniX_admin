@@ -6,7 +6,7 @@ import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart
 import 'package:flutter/material.dart';
 
 class FeatureImg extends StatelessWidget {
-  FeatureImg({super.key});
+  const FeatureImg({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -54,7 +54,7 @@ void validateAndAdd(context, Widget navigateTo) {
           ),
         ),
         backgroundColor: deleteRed,
-        duration: Duration(seconds: 2),
+        duration:const Duration(seconds: 2),
       ),
     );
   } else {
@@ -63,7 +63,7 @@ void validateAndAdd(context, Widget navigateTo) {
         category: categoryController.text.trim(),
         color: colorController.text.trim(),
         description: descriptionController.text.trim(),
-        price: double.parse(priceController.text.trim()),
+        price: priceController.text.trim(),
         quantity: int.parse(quantityController.text.trim()),
         size: int.parse(sizeController.text.trim()),
         images: imgUrl);

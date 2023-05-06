@@ -13,7 +13,6 @@ class AddFeatureImg extends StatelessWidget {
     return SizedBox(
       height: mHeight,
       child: SingleChildScrollView(
-        // scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: const [
