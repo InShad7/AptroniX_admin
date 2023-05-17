@@ -65,6 +65,14 @@ Future<void> deleteProduct(String productId) {
   return productsRef.doc(productId).delete();
 }
 
+
+Stream getOrder() async* {
+  final QuerySnapshot querySnapshot =
+      await FirebaseFirestore.instance.collection('orders').get();
+  final List<DocumentSnapshot> docs = querySnapshot.docs;
+  yield docs;
+}
+
 clear() {
   nameController.clear();
   categoryController.clear();

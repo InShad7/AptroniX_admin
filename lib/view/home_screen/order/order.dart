@@ -20,7 +20,7 @@ class OrderList extends StatelessWidget {
           kHeight20,
           Expanded(
             child: StreamBuilder(
-                stream: getProducts(),
+                stream: getOrder(),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
@@ -37,14 +37,25 @@ class OrderList extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const BouncingScrollPhysics(),
                               itemBuilder: (context, index) {
-                                final order = data[index];
+                                List filteredList = [];
+                                for (int i = 0; i < data.length; i++) {
+                                  filteredList.add(myProduct
+                                      .where((item) => data[i]['products']
+                                          .contains(item['id']))
+                                      .toList()
+                                    ..sort((a, b) => data
+                                        .indexOf(a['id'])
+                                        .compareTo(data.indexOf(b['id']))));
+                                }
+
+                                final product = filteredList[index];
                                 return Padding(
                                   padding: EdgeInsets.only(
                                       left: mWidth! / 20,
                                       right: mWidth! / 20,
                                       top: mHeight! / 130),
                                   child: Container(
-                                    height: mHeight! / 14,
+                                    height: mHeight! / 9,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: grey,
@@ -58,17 +69,37 @@ class OrderList extends StatelessWidget {
                                               padding:
                                                   const EdgeInsets.all(13.0),
                                               child: SizedBox(
-                                                width: 200,
-                                                child: Text(
-                                                  order['name'],
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: GoogleFonts.ubuntu(
-                                                      textStyle: TextStyle(
-                                                          fontSize:
-                                                              mHeight! / 48),
-                                                      fontWeight:
-                                                          FontWeight.w400),
+                                                width: 250,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      product[0]['name'],
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: GoogleFonts.ubuntu(
+                                                          textStyle: TextStyle(
+                                                              fontSize:
+                                                                  mHeight! /
+                                                                      40),
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    kHeight,
+                                                    Text(
+                                                      data[index]['username'],
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: GoogleFonts.ubuntu(
+                                                          textStyle: TextStyle(
+                                                              fontSize:
+                                                                  mHeight! /
+                                                                      52),
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
