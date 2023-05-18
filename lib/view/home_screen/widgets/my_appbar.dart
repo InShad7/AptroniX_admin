@@ -13,7 +13,7 @@ AppBar MyAppBar(BuildContext context, {required String title}) {
     iconTheme: IconThemeData(color: black),
     leading: IconButton(
       onPressed: () {
-        Navigator.pop(context);
+        Navigator.pop(context,'refresh');
         clear();
       },
       icon: const Icon(Icons.arrow_back_ios_new),
@@ -22,7 +22,7 @@ AppBar MyAppBar(BuildContext context, {required String title}) {
       title,
       style: GoogleFonts.ubuntu(
         textStyle: TextStyle(
-            fontSize: mHeight! / 25, color: black, fontWeight: FontWeight.w400),
+            fontSize: mHeight! / 28, color: black, fontWeight: FontWeight.w400),
       ),
     ),
   );

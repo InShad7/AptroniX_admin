@@ -12,7 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({Key? key, this.search=false}) : super(key: key);
+  const ProductCard({Key? key, this.search = false}) : super(key: key);
   final search;
   @override
   _ProductCardState createState() => _ProductCardState();
@@ -42,12 +42,13 @@ class _ProductCardState extends State<ProductCard> {
               return snapshot.data!.isEmpty
                   ? const Center(child: Text('List empty'))
                   : ListView.builder(
-                      itemCount: widget.search ? searchList.length : data.length,
+                      itemCount:
+                          widget.search ? searchList.length : data.length,
                       shrinkWrap: true,
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         final product =
-                           widget.search ? searchList[index] : data[index];
+                            widget.search ? searchList[index] : data[index];
                         return Padding(
                           padding: EdgeInsets.only(
                               left: mWidth! / 20,

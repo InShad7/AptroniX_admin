@@ -42,7 +42,7 @@ class LoginBtn extends StatelessWidget {
             style: GoogleFonts.ubuntu(
               textStyle: TextStyle(
                   fontSize: mHeight! / 44,
-                  color: grey,
+                  color: cardClr,
                   fontWeight: FontWeight.bold),
             ),
           ),

@@ -1,53 +1,67 @@
 import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/order/widget/drop_down_list.dart';
+import 'package:aptronixadmin/view/home_screen/order/widget/field.dart';
 import 'package:aptronixadmin/view/home_screen/order/widget/orderItem.dart';
-import 'package:aptronixadmin/view/home_screen/production/widget/text_field.dart';
+import 'package:aptronixadmin/view/home_screen/order/widget/status_page.dart';
 import 'package:aptronixadmin/view/home_screen/widgets/my_appbar.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-String? selectedItem;
-
-class OrderDetails extends StatelessWidget {
-  const OrderDetails({super.key});
-
+class OrderDetailsScreen extends StatelessWidget {
+  const OrderDetailsScreen({super.key, this.product, this.index, this.data});
+  final product;
+  final index;
+  final data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context, title: 'Order Details'),
+      appBar: MyAppBar(context, title: 'Order details'),
       body: ListView(children: [
-        detailsField(
-          label: 'Username',
-          ht: mHeight! / 14,
+        kHeight20,
+
+        CartCard(
+          quantity: false,
+          product: product,
+          index: index,
+          data: data,
+        ),
+        kHeight,
+        CustomTextField(
+          label: 'User Email',
+          ht: 65,
           width: mWidth!,
           num: false,
           max: 1,
-          content: 'admin',
+          content: data['username'],
           readOnly: true,
         ),
-        detailsField(
+        kHeight,
+        CustomTextField(
           label: 'Address',
-          ht: mHeight! / 6,
+          ht: 200,
           width: mWidth!,
           num: false,
           max: 10,
           content:
-              'Address 1\n house no: Area\n Street Post\n City , State\n Pincode',
+              "${data['address']['name']}\n${data['address']['houseNumber']}\n${data['address']['streetName']}\n${data['address']['city']}\n${data['address']['state']}\n${data['address']['pincode']}\n${data['address']['phoneNumber']}\n",
           readOnly: true,
         ),
         kHeight,
-        orderItems(),
-        detailsField(
-          label: 'Payment',
-          ht: mHeight! / 14,
+        CustomTextField(
+          label: 'Total Amount',
+          ht: 65,
           width: mWidth!,
           num: false,
-          max: 2,
-          content: 'Prepaid - UPI',
+          max: 1,
+          content:
+              '${int.parse(product['price']) * data['count']}  -  ${data['payment']}',
           readOnly: true,
         ),
+
+        kHeight,
+        // StatusPage(),
       ]),
       bottomNavigationBar: Container(
         height: mHeight! / 10,
@@ -66,7 +80,7 @@ class OrderDetails extends StatelessWidget {
               textStyle: TextStyle(fontSize: 22, color: white),
             ),
           ),
-          const DropDownList(),
+          DropDownList(data: data),
         ]),
       ),
     );

@@ -7,9 +7,14 @@ import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OrderList extends StatelessWidget {
+class OrderList extends StatefulWidget {
   const OrderList({super.key});
 
+  @override
+  State<OrderList> createState() => _OrderListState();
+}
+
+class _OrderListState extends State<OrderList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,74 +60,89 @@ class OrderList extends StatelessWidget {
                                       right: mWidth! / 20,
                                       top: mHeight! / 130),
                                   child: Container(
-                                    height: mHeight! / 9,
+                                    height: mHeight! / 10,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: grey,
+                                      color: cardClr,
                                     ),
                                     child: InkWell(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(7.0),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(13.0),
-                                              child: SizedBox(
-                                                width: 250,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      product[0]['name'],
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: GoogleFonts.ubuntu(
-                                                          textStyle: TextStyle(
-                                                              fontSize:
-                                                                  mHeight! /
-                                                                      40),
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                    kHeight,
-                                                    Text(
-                                                      data[index]['username'],
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: GoogleFonts.ubuntu(
-                                                          textStyle: TextStyle(
-                                                              fontSize:
-                                                                  mHeight! /
-                                                                      52),
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                  ],
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(7.0),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(13.0),
+                                                child: SizedBox(
+                                                  width: 220,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        product[0]['name'],
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: GoogleFonts.ubuntu(
+                                                            textStyle: TextStyle(
+                                                                fontSize:
+                                                                    mHeight! /
+                                                                        40),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400),
+                                                      ),
+                                                      kHeight,
+                                                      Text(
+                                                        data[index]['username'],
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: GoogleFonts.ubuntu(
+                                                            textStyle: TextStyle(
+                                                                fontSize:
+                                                                    mHeight! /
+                                                                        52),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w400),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            const Spacer(),
-                                            Text(
-                                              'Delivered',
-                                              style: GoogleFonts.ubuntu(
-                                                  textStyle: TextStyle(
-                                                      fontSize: mHeight! / 58),
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.green),
-                                            ),
-                                            kWidth,
-                                          ],
+                                              const Spacer(),
+                                              SizedBox(
+                                                width: 80,
+                                                child: Text(
+                                                  data[index]['status'],
+                                                  style: GoogleFonts.ubuntu(
+                                                      textStyle: TextStyle(
+                                                          fontSize:
+                                                              mHeight! / 58),
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Colors.green),
+                                                ),
+                                              ),
+                                              // kWidth,
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      onTap: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => OrderDetails(),
-                                        ),
-                                      ),
-                                    ),
+                                        onTap: () async {
+                                          final result = await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  OrderDetailsScreen(
+                                                      product: product[0],
+                                                      data: data[index]),
+                                            ),
+                                          );
+                                          if (result == 'refresh') {
+                                            setState(() {});
+                                          }
+                                        }),
                                   ),
                                 );
                               },

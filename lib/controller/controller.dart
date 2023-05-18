@@ -25,6 +25,7 @@ Stream getProducts() async* {
   final List<DocumentSnapshot> docs = querySnapshot.docs;
   yield docs;
 }
+
 Stream getImgs() async* {
   final QuerySnapshot querySnapshot =
       await FirebaseFirestore.instance.collection('FeatureImage').get();
@@ -65,6 +66,12 @@ Future<void> deleteProduct(String productId) {
   return productsRef.doc(productId).delete();
 }
 
+Future<void> updateStatus(data, selectedItem) async {
+  FirebaseFirestore.instance
+      .collection('orders')
+      .doc(data['id'])
+      .update({'status': selectedItem});
+}
 
 Stream getOrder() async* {
   final QuerySnapshot querySnapshot =

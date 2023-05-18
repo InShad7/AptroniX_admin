@@ -38,7 +38,7 @@ class MyTextField extends StatelessWidget {
           width: mWidth! / 1.099,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(border),
-            color: grey,
+            color: cardClr,
           ),
           child: Padding(
             padding: const EdgeInsets.all(6.0),
