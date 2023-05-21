@@ -16,72 +16,93 @@ class OrderDetailsScreen extends StatelessWidget {
   final data;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(context, title: 'Order details'),
-      body: ListView(children: [
-        kHeight20,
+    Future<bool> onWillPop() async {
+      // Call the function when popping the screen
+      Navigator.pop(context, 'refresh');
+      return true; // Allow the screen to be popped
+    }
 
-        CartCard(
-          quantity: false,
-          product: product,
-          index: index,
-          data: data,
-        ),
-        kHeight,
-        CustomTextField(
-          label: 'User Email',
-          ht: 65,
-          width: mWidth!,
-          num: false,
-          max: 1,
-          content: data['username'],
-          readOnly: true,
-        ),
-        kHeight,
-        CustomTextField(
-          label: 'Address',
-          ht: 200,
-          width: mWidth!,
-          num: false,
-          max: 10,
-          content:
-              "${data['address']['name']}\n${data['address']['houseNumber']}\n${data['address']['streetName']}\n${data['address']['city']}\n${data['address']['state']}\n${data['address']['pincode']}\n${data['address']['phoneNumber']}\n",
-          readOnly: true,
-        ),
-        kHeight,
-        CustomTextField(
-          label: 'Total Amount',
-          ht: 65,
-          width: mWidth!,
-          num: false,
-          max: 1,
-          content:
-              '${int.parse(product['price']) * data['count']}  -  ${data['payment']}',
-          readOnly: true,
-        ),
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: Scaffold(
+        appBar: MyAppBar(context, title: 'Order details'),
+        body: ListView(children: [
+          kHeight20,
 
-        kHeight,
-        // StatusPage(),
-      ]),
-      bottomNavigationBar: Container(
-        height: mHeight! / 10,
-        width: mWidth,
-        decoration: BoxDecoration(
-          color: blue,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(18),
-            topRight: Radius.circular(18),
+          CartCard(
+            quantity: false,
+            product: product,
+            index: index,
+            data: data,
           ),
-        ),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Text(
-            'Order Status :',
-            style: GoogleFonts.sora(
-              textStyle: TextStyle(fontSize: 22, color: white),
+          kHeight,
+          CustomTextField(
+            label: 'Order Id',
+            ht: 65,
+            width: mWidth!,
+            num: false,
+            max: 1,
+            content: data['id'],
+            readOnly: true,
+          ),
+
+          kHeight,
+          CustomTextField(
+            label: 'User Email',
+            ht: 65,
+            width: mWidth!,
+            num: false,
+            max: 1,
+            content: data['username'],
+            readOnly: true,
+          ),
+          kHeight,
+          CustomTextField(
+            label: 'Address',
+            ht: 200,
+            width: mWidth!,
+            num: false,
+            max: 10,
+            content:
+                "${data['address']['name']}\n${data['address']['houseNumber']}\n${data['address']['streetName']}\n${data['address']['city']}\n${data['address']['state']}\n${data['address']['pincode']}\n${data['address']['phoneNumber']}\n",
+            readOnly: true,
+          ),
+          kHeight,
+          CustomTextField(
+            label: 'Total Amount',
+            ht: 65,
+            width: mWidth!,
+            num: false,
+            max: 1,
+            content:
+                '${int.parse(product['price']) * data['count']}  -  ${data['payment']}',
+            readOnly: true,
+          ),
+
+          kHeight,
+          // StatusPage(),
+        ]),
+        bottomNavigationBar: Container(
+          height: mHeight! / 10,
+          width: mWidth,
+          decoration: BoxDecoration(
+            color: blue,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(18),
+              topRight: Radius.circular(18),
             ),
           ),
-          DropDownList(data: data),
-        ]),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Text(
+              'Order Status :',
+              style: GoogleFonts.sora(
+                textStyle: TextStyle(fontSize: 22, color: white),
+              ),
+            ),
+            DropDownList(data: data),
+          ]),
+        ),
       ),
     );
   }

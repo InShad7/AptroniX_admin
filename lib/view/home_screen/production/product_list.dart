@@ -1,7 +1,6 @@
 import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/utils/utils.dart';
-import 'package:aptronixadmin/view/home_screen/home_screen.dart';
 import 'package:aptronixadmin/view/home_screen/production/add_screen.dart';
 import 'package:aptronixadmin/view/home_screen/production/product_detail.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
@@ -11,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 class ProductList extends StatefulWidget {
   const ProductList({Key? key}) : super(key: key);
@@ -34,7 +34,7 @@ class _ProductListState extends State<ProductList> {
       body: Column(
         children: [
           kHeight,
-          const SearchBar(),
+          SearchBar(),
           kHeight20,
           Expanded(
             child: StreamBuilder(

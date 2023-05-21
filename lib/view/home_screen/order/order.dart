@@ -21,7 +21,7 @@ class _OrderListState extends State<OrderList> {
       body: Column(
         children: [
           kHeight,
-          const SearchBar(),
+           SearchBar(),
           kHeight20,
           Expanded(
             child: StreamBuilder(
@@ -100,6 +100,7 @@ class _OrderListState extends State<OrderList> {
                                                             .ellipsis,
                                                         style: GoogleFonts.ubuntu(
                                                             textStyle: TextStyle(
+                                                             color: blue,
                                                                 fontSize:
                                                                     mHeight! /
                                                                         52),
