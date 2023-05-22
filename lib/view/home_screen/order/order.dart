@@ -21,7 +21,7 @@ class _OrderListState extends State<OrderList> {
       body: Column(
         children: [
           kHeight,
-           SearchBar(),
+          SearchBar(),
           kHeight20,
           Expanded(
             child: StreamBuilder(
@@ -100,7 +100,7 @@ class _OrderListState extends State<OrderList> {
                                                             .ellipsis,
                                                         style: GoogleFonts.ubuntu(
                                                             textStyle: TextStyle(
-                                                             color: blue,
+                                                                color: grey1,
                                                                 fontSize:
                                                                     mHeight! /
                                                                         52),
@@ -123,7 +123,20 @@ class _OrderListState extends State<OrderList> {
                                                               mHeight! / 58),
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      color: Colors.green),
+                                                      color: data[index]
+                                                                  ['status'] ==
+                                                              'Ordered'
+                                                          ? black
+                                                          : data[index][
+                                                                      'status'] ==
+                                                                  'Shipped'
+                                                              ? blue1
+                                                              : data[index][
+                                                                          'status'] ==
+                                                                      'Cancelled'
+                                                                  ? red
+                                                                  : Colors
+                                                                      .green),
                                                 ),
                                               ),
                                               // kWidth,
