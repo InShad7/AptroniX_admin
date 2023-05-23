@@ -14,10 +14,14 @@ TextEditingController descriptionController = TextEditingController();
 TextEditingController idController = TextEditingController();
 
 TextEditingController searchController = TextEditingController();
+TextEditingController searchController1 = TextEditingController();
 
 List imgUrl = [];
 List searchList = [];
 List myProduct = [];
+List orderP = [];
+List datalist1 = [];
+List searchList1 = [];
 
 Stream getProducts() async* {
   final QuerySnapshot querySnapshot =

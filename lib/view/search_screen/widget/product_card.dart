@@ -1,10 +1,7 @@
 import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/utils/utils.dart';
-import 'package:aptronixadmin/view/home_screen/production/add_screen.dart';
 import 'package:aptronixadmin/view/home_screen/production/product_detail.dart';
-import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
-import 'package:aptronixadmin/view/home_screen/widgets/search_bar.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -41,96 +38,100 @@ class _ProductCardState extends State<ProductCard> {
               final data = snapshot.data;
               return snapshot.data!.isEmpty
                   ? const Center(child: Text('List empty'))
-                  : ListView.builder(
-                      itemCount:
-                          widget.search ? searchList.length : data.length,
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        final product =
-                            widget.search ? searchList[index] : data[index];
-                        return Padding(
-                          padding: EdgeInsets.only(
-                              left: mWidth! / 20,
-                              right: mWidth! / 20,
-                              top: mHeight! / 130),
-                          child: Slidable(
-                            endActionPane: ActionPane(
-                                motion: const BehindMotion(),
-                                children: [
-                                  SlidableAction(
-                                    onPressed: (context) async {
-                                      await deleteAlert(context, product['id']);
-                                      // await deleteProduct(
-                                      //     product['id']);
-                                    },
-                                    backgroundColor: deleteRed,
-                                    icon: Icons.close_rounded,
-                                    label: 'Delete',
-                                  ),
-                                ]),
-                            child: Container(
-                              height: mHeight! / 11.7,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color: grey,
-                              ),
-                              child: InkWell(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(7.0),
-                                  child: Row(
+                  : (widget.search ? searchList.length : myProduct.length) > 0
+                      ? ListView.builder(
+                          itemCount:
+                              widget.search ? searchList.length : data.length,
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            final product =
+                                widget.search ? searchList[index] : data[index];
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                  left: mWidth! / 20,
+                                  right: mWidth! / 20,
+                                  top: mHeight! / 130),
+                              child: Slidable(
+                                endActionPane: ActionPane(
+                                    motion: const BehindMotion(),
                                     children: [
-                                      Container(
-                                        height: mHeight! / 14.3,
-                                        width: mWidth! / 6.6,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  product['images'][0]),
-                                              fit: BoxFit.contain),
-                                        ),
+                                      SlidableAction(
+                                        onPressed: (context) async {
+                                          await deleteAlert(
+                                              context, product['id']);
+                                       
+                                        },
+                                        backgroundColor: deleteRed,
+                                        icon: Icons.close_rounded,
+                                        label: 'Delete',
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(13.0),
-                                        child: SizedBox(
-                                          width: 200,
-                                          child: Text(
-                                            product['name'],
-                                            overflow: TextOverflow.ellipsis,
+                                    ]),
+                                child: Container(
+                                  height: mHeight! / 11.7,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(18),
+                                    color: grey,
+                                  ),
+                                  child: InkWell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(7.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            height: mHeight! / 14.3,
+                                            width: mWidth! / 6.6,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      product['images'][0]),
+                                                  fit: BoxFit.contain),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(13.0),
+                                            child: SizedBox(
+                                              width: 200,
+                                              child: Text(
+                                                product['name'],
+                                                overflow: TextOverflow.ellipsis,
+                                                style: GoogleFonts.ubuntu(
+                                                    textStyle: TextStyle(
+                                                        fontSize:
+                                                            mHeight! / 48),
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          Text(
+                                            product['quantity'].toString(),
                                             style: GoogleFonts.ubuntu(
                                                 textStyle: TextStyle(
-                                                    fontSize: mHeight! / 48),
+                                                    fontSize: mHeight! / 58),
                                                 fontWeight: FontWeight.w400),
                                           ),
-                                        ),
+                                          kWidth20,
+                                        ],
                                       ),
-                                      const Spacer(),
-                                      Text(
-                                        product['quantity'].toString(),
-                                        style: GoogleFonts.ubuntu(
-                                            textStyle: TextStyle(
-                                                fontSize: mHeight! / 58),
-                                            fontWeight: FontWeight.w400),
+                                    ),
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ProductDetails(product: product),
                                       ),
-                                      kWidth20,
-                                    ],
-                                  ),
-                                ),
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        ProductDetails(product: product),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    );
+                            );
+                          },
+                        )
+                      : Center(child: Image.asset('assets/nomatchfound.jpeg'));
             }
           }
           return const Text("Cant fetch Data");

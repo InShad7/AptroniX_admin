@@ -17,9 +17,9 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<bool> onWillPop() async {
-      // Call the function when popping the screen
+      
       Navigator.pop(context, 'refresh');
-      return true; // Allow the screen to be popped
+      return true; 
     }
 
     return WillPopScope(

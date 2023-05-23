@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 TextEditingController searchController = TextEditingController();
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({super.key});
+  const SearchBar({super.key, required bool order});
 
   @override
   Widget build(BuildContext context) {

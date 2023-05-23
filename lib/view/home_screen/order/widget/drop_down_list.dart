@@ -31,42 +31,57 @@ class _DropDownListState extends State<DropDownList> {
         color: white,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: DropdownButton(
-          value: selectedItem,
-          isExpanded: true,
-          underline: null,
-          hint: const Text('Select'),
-          style: GoogleFonts.sora(
-            textStyle: TextStyle(fontSize: 19, color: black),
-          ),
-          items: const [
-            DropdownMenuItem(
-              value: 'Ordered',
-              child: Text('Ordered'),
+      child: widget.data['status'] == 'Cancelled'
+          ? Center(
+              child: Text(
+                'Cancelled',
+                style: GoogleFonts.roboto(
+                  textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: deleteRed),
+                ),
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: DropdownButton(
+                  value: selectedItem,
+                  isExpanded: true,
+                  underline: null,
+                  hint: const Text('Select'),
+                  style: GoogleFonts.sora(
+                    textStyle: TextStyle(fontSize: 19, color: black),
+                  ),
+                  items: const [
+                    DropdownMenuItem(
+                      value: 'Ordered',
+                      child: Text('Ordered'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Shipped',
+                      child: Text('Shipped'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Out Of Delivery',
+                      child: Text('Out of Delivery'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Delivered',
+                      child: Text('Delivered'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Cancelled',
+                      child: Text('Cancelled'),
+                    ),
+                  ],
+                  onChanged: (value) {
+                    setState(() {
+                      selectedItem = value;
+                      updateStatus(widget.data, selectedItem);
+                    });
+                  }),
             ),
-            DropdownMenuItem(
-              value: 'Shipped',
-              child: Text('Shipped'),
-            ),
-            DropdownMenuItem(
-              value: 'Out Of Delivery',
-              child: Text('Out of Delivery'),
-            ),
-            DropdownMenuItem(
-              value: 'Delivered',
-              child: Text('Delivered'),
-            ),
-            DropdownMenuItem(
-              value: 'Cancelled',
-              child: Text('Cancelled'),
-            ),
-          ],
-          onChanged: (value) {
-            setState(() {
-              selectedItem = value;
-              updateStatus(widget.data, selectedItem);
-            });
-          }),
     );
   }
 }
