@@ -75,9 +75,12 @@ class _OrderTileState extends State<OrderTile> {
                               : widget.data[widget.index]['status'] == 'Shipped'
                                   ? blue1
                                   : widget.data[widget.index]['status'] ==
-                                          'Cancelled'
-                                      ? red
-                                      : Colors.green),
+                                          'Out of Delivery'
+                                      ? yellow
+                                      : widget.data[widget.index]['status'] ==
+                                              'Cancelled'
+                                          ? red
+                                          : Colors.green),
                     ),
                   ),
                   // kWidth,

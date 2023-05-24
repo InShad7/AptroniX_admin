@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aptronixadmin/model/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ List myProduct = [];
 List orderP = [];
 List datalist1 = [];
 List searchList1 = [];
+String? category1;
+String? varient;
 
 Stream getProducts() async* {
   final QuerySnapshot querySnapshot =
@@ -63,6 +66,37 @@ Future<String> updateImage(File imageFile, img) async {
   return downloadURL;
 }
 
+Future<void> deleteImage(String imagePath, product, index) async {
+  final docSnapshot = await FirebaseFirestore.instance
+      .collection('FeatureImage')
+      .doc('images')
+      .get();
+
+  final imageList = docSnapshot.data()?['images'] ?? [];
+  imageList.removeAt(index);
+  await FirebaseFirestore.instance
+      .collection('FeatureImage')
+      .doc('images')
+      .update({'images': imageList});
+
+  // setState(() {
+  imgUrl = imageList;
+  // });
+}
+
+addToFirebase(category) {
+  Product myProduct = Product(
+      name: nameController.text.trim(),
+      category: category,
+      color: colorController.text.trim(),
+      description: descriptionController.text.trim(),
+      price: priceController.text.trim(),
+      quantity: int.parse(quantityController.text.trim()),
+      size: int.parse(sizeController.text.trim()),
+      images: imgUrl);
+  myProduct.addToFirestore();
+}
+
 // Delete a document
 Future<void> deleteProduct(String productId) {
   final CollectionReference productsRef =
@@ -93,4 +127,6 @@ clear() {
   priceController.clear();
   descriptionController.clear();
   imgUrl.clear();
+  category1 = null;
+  varient = null;
 }

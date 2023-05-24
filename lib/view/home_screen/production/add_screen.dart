@@ -1,10 +1,10 @@
 import 'package:aptronixadmin/controller/controller.dart';
-import 'package:aptronixadmin/utils/color.dart';
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/home_screen.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/add_curosel_img.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_btn.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_field.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/dropdown_btn.dart';
 import 'package:aptronixadmin/view/home_screen/widgets/my_appbar.dart';
 import 'package:aptronixadmin/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -31,15 +31,15 @@ class AddProductScreen extends StatelessWidget {
               height: mHeight! / 16,
               readOnly: false),
           Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              customField2(
-                  controller: categoryController,
-                  label: 'Category',
-                  width: mWidth! / 2,
-                  height: mHeight! / 16,
-                  max: false,
-                  num: false,
-                  readOnly: false),
+              dropDownList(
+                label: "Category",
+                height: mHeight! / 15,
+                width: mWidth! / 2,
+                GB: true,
+                edit: false,
+              ),
               customField2(
                   controller: quantityController,
                   label: 'Quantity',
@@ -52,14 +52,13 @@ class AddProductScreen extends StatelessWidget {
           ),
           Row(
             children: [
-              customField2(
-                  controller: sizeController,
-                  label: 'Size',
-                  width: mWidth! / 3,
-                  height: mHeight! / 16,
-                  max: false,
-                  num: true,
-                  readOnly: false),
+              dropDownList(
+                label: "Size",
+                height: mHeight! / 15,
+                width: mWidth! / 3,
+                GB: false,
+                edit: false,
+              ),
               customField2(
                   controller: colorController,
                   label: 'Color',
@@ -87,8 +86,11 @@ class AddProductScreen extends StatelessWidget {
           // kHeight100,
         ],
       ),
-      bottomNavigationBar:
-          addBtn(navigateTo: HomeScreen(), context: context, title: 'Save'),
+      bottomNavigationBar: addBtn(
+        navigateTo: HomeScreen(),
+        context: context,
+        title: 'Save',
+      ),
     );
   }
 }

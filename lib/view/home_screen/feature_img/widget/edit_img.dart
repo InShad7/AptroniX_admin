@@ -184,21 +184,5 @@ class _AddImgCard2State extends State<AddImgCard2> {
     );
   }
 
-  Future<void> deleteImage(String imagePath, product, index) async {
-    final docSnapshot = await FirebaseFirestore.instance
-        .collection('FeatureImage')
-        .doc('images')
-        .get();
 
-    final imageList = docSnapshot.data()?['images'] ?? [];
-    imageList.removeAt(index);
-    await FirebaseFirestore.instance
-        .collection('FeatureImage')
-        .doc('images')
-        .update({'images': imageList});
-
-    // setState(() {
-    imgUrl = imageList;
-    // });
-  }
 }

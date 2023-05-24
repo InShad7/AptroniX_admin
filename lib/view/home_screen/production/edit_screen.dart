@@ -2,6 +2,7 @@ import 'package:aptronixadmin/controller/controller.dart';
 import 'package:aptronixadmin/utils/utils.dart';
 import 'package:aptronixadmin/view/home_screen/home_screen.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/custom_field.dart';
+import 'package:aptronixadmin/view/home_screen/production/widget/dropdown_btn.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/edit_curosel.dart';
 import 'package:aptronixadmin/view/home_screen/production/widget/updateBtn.dart';
 import 'package:aptronixadmin/view/home_screen/widgets/my_appbar.dart';
@@ -32,15 +33,15 @@ class EditScreen extends StatelessWidget {
               readOnly: false),
           Row(
             children: [
-              customField2(
-                  controller: categoryController =
-                      TextEditingController(text: product['category']),
-                  label: 'Category',
-                  width: mWidth! / 2,
-                  height: mHeight! / 14,
-                  max: false,
-                  num: false,
-                  readOnly: false),
+              dropDownList(
+                label: "Category",
+                height: mHeight! / 15,
+                width: mWidth! / 2,
+                GB: true,
+                edit: true,
+                product: product,
+              ),
+             
               customField2(
                   controller: quantityController = TextEditingController(
                       text: product['quantity'].toString()),
@@ -54,15 +55,15 @@ class EditScreen extends StatelessWidget {
           ),
           Row(
             children: [
-              customField2(
-                  controller: sizeController =
-                      TextEditingController(text: product['size'].toString()),
-                  label: 'Size',
-                  width: mWidth! / 3,
-                  height: mHeight! / 14,
-                  max: false,
-                  num: true,
-                  readOnly: false),
+              dropDownList(
+                label: "Size",
+                height: mHeight! / 15,
+                width: mWidth! / 3,
+                GB: false,
+                edit: true,
+                product: product,
+              ),
+             
               customField2(
                   controller: colorController =
                       TextEditingController(text: product['color']),

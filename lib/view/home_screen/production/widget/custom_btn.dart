@@ -38,9 +38,9 @@ Widget addBtn(
 
 void validateAndAdd(context, Widget navigateTo) {
   if (nameController.text.isEmpty ||
-      categoryController.text.isEmpty ||
+      category1 == null ||
       quantityController.text.isEmpty ||
-      sizeController.text.isEmpty ||
+      varient == null ||
       colorController.text.isEmpty ||
       priceController.text.isEmpty ||
       descriptionController.text.isEmpty ||
@@ -54,28 +54,29 @@ void validateAndAdd(context, Widget navigateTo) {
           ),
         ),
         backgroundColor: deleteRed,
-        duration:const Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       ),
     );
   } else {
     Product myProduct = Product(
         name: nameController.text.trim(),
-        category: categoryController.text.trim(),
+        category: category1,
         color: colorController.text.trim(),
         description: descriptionController.text.trim(),
         price: priceController.text.trim(),
         quantity: int.parse(quantityController.text.trim()),
-        size: int.parse(sizeController.text.trim()),
+        size: int.parse(varient.toString()),
         images: imgUrl);
     myProduct.addToFirestore();
-
+    // category = null;
+    clear();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => navigateTo,
       ),
     );
-    clear();
+
     Fluttertoast.showToast(
       msg: "Product added.",
       toastLength: Toast.LENGTH_SHORT,

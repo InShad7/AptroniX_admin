@@ -36,9 +36,9 @@ Widget updateBtn(
 
 void validateAndUpdate(context, Widget navigateTo, product) {
   if (nameController.text.isEmpty ||
-      categoryController.text.isEmpty ||
+      category1 == null ||
       quantityController.text.isEmpty ||
-      sizeController.text.isEmpty ||
+      varient == null ||
       colorController.text.isEmpty ||
       priceController.text.isEmpty ||
       descriptionController.text.isEmpty ||
@@ -58,12 +58,12 @@ void validateAndUpdate(context, Widget navigateTo, product) {
   } else {
     Product updateProduct = Product(
         name: nameController.text,
-        category: categoryController.text,
+        category: category1,
         color: colorController.text,
         description: descriptionController.text,
         price: priceController.text,
         quantity: int.parse(quantityController.text),
-        size: int.parse(sizeController.text),
+        size: int.parse(varient.toString()),
         images: imgUrl);
     updateProduct.updateDocument(product);
 
