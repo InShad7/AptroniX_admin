@@ -17,9 +17,8 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<bool> onWillPop() async {
-      
       Navigator.pop(context, 'refresh');
-      return true; 
+      return true;
     }
 
     return WillPopScope(

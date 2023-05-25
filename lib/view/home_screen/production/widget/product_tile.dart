@@ -47,7 +47,7 @@ class _ProductTileState extends State<ProductTile> {
               child: Row(
                 children: [
                   Container(
-                    height: mHeight! / 14.7,
+                    height: mHeight! / 14.9,
                     width: mWidth! / 6,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),

@@ -6,18 +6,19 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../utils/color.dart';
 
-class OrderTile extends StatefulWidget {
+class OrderTile extends StatelessWidget {
   const OrderTile(
-      {super.key, this.data, this.index, this.product, this.search = false});
+      {super.key,
+      this.data,
+      this.index,
+      this.product,
+      this.search = false,
+      this.refresh});
   final data;
   final index;
   final product;
   final search;
-  @override
-  State<OrderTile> createState() => _OrderTileState();
-}
-
-class _OrderTileState extends State<OrderTile> {
+  final refresh;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,7 +43,7 @@ class _OrderTileState extends State<OrderTile> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.product[0]['name'],
+                            product[0]['name'],
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.ubuntu(
                                 textStyle: TextStyle(fontSize: mHeight! / 40),
@@ -50,7 +51,7 @@ class _OrderTileState extends State<OrderTile> {
                           ),
                           kHeight,
                           Text(
-                            widget.data[widget.index]['username'],
+                            data[index]['username'],
                             overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.ubuntu(
                                 textStyle: TextStyle(
@@ -65,20 +66,17 @@ class _OrderTileState extends State<OrderTile> {
                   SizedBox(
                     width: 80,
                     child: Text(
-                      widget.data[widget.index]['status'],
+                      data[index]['status'],
                       style: GoogleFonts.ubuntu(
                           textStyle: TextStyle(fontSize: mHeight! / 58),
                           fontWeight: FontWeight.w400,
-                          color: widget.data[widget.index]['status'] ==
-                                  'Ordered'
+                          color: data[index]['status'] == 'Ordered'
                               ? black
-                              : widget.data[widget.index]['status'] == 'Shipped'
+                              : data[index]['status'] == 'Shipped'
                                   ? blue1
-                                  : widget.data[widget.index]['status'] ==
-                                          'Out of Delivery'
+                                  : data[index]['status'] == 'Out Of Delivery'
                                       ? yellow
-                                      : widget.data[widget.index]['status'] ==
-                                              'Cancelled'
+                                      : data[index]['status'] == 'Cancelled'
                                           ? red
                                           : Colors.green),
                     ),
@@ -92,12 +90,11 @@ class _OrderTileState extends State<OrderTile> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => OrderDetailsScreen(
-                      product: widget.product[0],
-                      data: widget.data[widget.index]),
+                      product: product[0], data: data[index]),
                 ),
               );
               if (result == 'refresh') {
-                setState(() {});
+                refresh();
               }
             }),
       ),

@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Text(
-          "Aptronix",
+          "aptronix.",
           style: GoogleFonts.ubuntu(
             textStyle:
                 TextStyle(fontSize: mHeight! / 16, fontWeight: FontWeight.bold),

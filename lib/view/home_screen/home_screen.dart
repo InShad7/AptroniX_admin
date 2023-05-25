@@ -21,9 +21,13 @@ class HomeScreen extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
           title: Text(
-            'Aptronix',
-            style: GoogleFonts.ubuntu(
-              textStyle: TextStyle(fontSize: mHeight! / 25, color: black),
+            'aptronix.',
+            style: GoogleFonts.roboto(
+              textStyle: TextStyle(
+                fontSize: mHeight! / 28,
+                color: black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           actions: [

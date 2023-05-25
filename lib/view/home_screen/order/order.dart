@@ -20,6 +20,13 @@ class OrderList extends StatefulWidget {
 
 class _OrderListState extends State<OrderList> {
   bool search = false;
+  bool a = false;
+  void refresh() {
+    setState(() {
+      a = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +68,11 @@ class _OrderListState extends State<OrderList> {
                                 orderP = filteredList;
                                 final product = filteredList[index];
                                 return OrderTile(
-                                    product: product, data: data, index: index);
+                                  product: product,
+                                  data: data,
+                                  index: index,
+                                  refresh: refresh,
+                                );
                               },
                             );
                     }
